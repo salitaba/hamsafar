@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from hamsafar.models import Profile, Request
+from hamsafar.models import Profile, RequestTravel
 from rest_framework import serializers
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -36,9 +36,17 @@ class CreateProfileSerializer(serializers.ModelSerializer):
         return profile
 
 
-class RequestSerializer(serializers.ModelSerializer):
+class RequestSerializer(serializers.ModelSerializer): 
     class Meta:
-        model = Request
+        model = RequestTravel
         fields = '__all__'
+    
+class CreateRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RequestTravel
+        fields = ('lat', 'long',)
     def create(self, validated_data):
-        return Request.objects.create(**validated_data)
+        user_id = self.context.get("user_id")
+        print(type(user_id))
+        validated_data['user'] = User.objects.get(id=user_id)
+        return RequestTravel.objects.create(**validated_data)
