@@ -74,3 +74,24 @@ class RequestAPIView(APIView):
         return Response({
             "type": type(serializer.data)
         })
+
+class FindNearAPIView(APIView):
+    def get(self, request):
+        permission_classes= [IsAuthenticated, ]
+        request_list = RequestTravel.objects.all()
+        serializer = RequestSerializer(request_list, many=True)
+        response = {
+            "requests": serializer.data
+        }
+        return Response(response)
+
+    def post(self, request):
+        permission_classes = [IsAuthenticated, ]
+        requests = RequestTravel.objects.all()
+        for request_travel in requests :
+            request_travel.status = 'accepted'
+            request_travel.save()
+        return Response({
+            "status": 200
+        })
+        

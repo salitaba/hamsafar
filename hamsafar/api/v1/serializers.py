@@ -44,7 +44,7 @@ class RequestSerializer(serializers.ModelSerializer):
 class CreateRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = RequestTravel
-        fields = ('lat', 'long',)
+        fields = ('lat', 'long', 'status')
     def create(self, validated_data):
         user_id = self.context.get("user_id")
         print(type(user_id))

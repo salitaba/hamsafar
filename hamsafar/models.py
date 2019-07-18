@@ -23,9 +23,10 @@ class RequestTravel(models.Model):
 
     lat = models.DecimalField(max_digits=15, decimal_places=13)
     long = models.DecimalField(max_digits=15, decimal_places=13)
-    status = models.CharField(choises=status_choises)
+    status = models.CharField(max_length=10, choices=status_choises)
 
     user = models.ForeignKey(
         to=User,
         on_delete=models.CASCADE,
     )
+
