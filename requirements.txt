@@ -5,3 +5,4 @@ djangorestframework-simplejwt
 pylint
 autopep8
 pylint-django
+django-cors-headers
