@@ -88,10 +88,19 @@ class FindNearAPIView(APIView):
     def post(self, request):
         permission_classes = [IsAuthenticated, ]
         requests = RequestTravel.objects.all()
+        cnt = 0
+
         for request_travel in requests :
             request_travel.status = 'accepted'
+            request_travel.user.profile.cash -= 10
+            request_travel.user.profile.save()
             request_travel.save()
+            cnt = cnt + 1
+
+
+        request.user.profile.cash += 10 * cnt
+        request.user.profile.save()
         return Response({
-            "status": 200
+            "response": 200
         })
         

@@ -76,7 +76,7 @@
     -> get my requests : /api/v1/request (GET)
 
         response :
-        
+
         {
             "requests": [
                 {
@@ -99,3 +99,38 @@
                 }
             ]
         }
+
+    -> get my nearby persons: /api/v1/find-near (GET)
+
+        response: 
+
+        {
+            "requests": [
+                {
+                    "id": 1,
+                    "user": {
+                        "username": "ali"
+                    },
+                    "lat": "0.0000000000000",
+                    "long": "0.0000000000000",
+                    "status": "accepted"
+                },
+                {
+                    "id": 2,
+                    "user": {
+                        "username": "ali"
+                    },
+                    "lat": "0.0000000000000",
+                    "long": "0.0000000000000",
+                    "status": "accepted"
+                }
+        }
+    
+    -> accept nearby persons: /api/v1/find-near (POST)  [ this request change status person requests to accepted ]
+
+        response:
+
+        {
+            "response": 200
+        }
+
