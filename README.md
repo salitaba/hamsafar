@@ -134,3 +134,22 @@
             "response": 200
         }
 
+
+    -> how to use token
+    
+        recieve token => /api/token (POST)
+
+            {
+                "username":"ali"
+                "password":"1234"
+            }
+
+            response:
+
+            {
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFsaSIsImV4cCI6MTU2NjEwMTc3NCwiZW1haWwiOiIiLCJvcmlnX2lhdCI6MTU2MzUwOTc3NH0.aVxoW8EooXcdwdF9gaJa2qJDbo6o2VJWYU43RNOrcZM"
+            }
+
+        authencitation => in your headerfile you must set this :
+
+            

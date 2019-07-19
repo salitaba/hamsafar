@@ -14,6 +14,7 @@ class ProfileView(generics.ListCreateAPIView):
     serializer_class = CreateProfileSerializer()
 
     def list(self, request):
+        permission_classes = [IsAuthenticated,]
         queryset = request.user.profile()
         serializer_class = ProfileSerializer(queryset,)
         return Response(serializer_class)
@@ -30,6 +31,7 @@ class RequestView(generics.ListCreateAPIView):
 
 
 class ProfileAPIView(APIView):
+    # permission_classes = [,]
     def get(self, request):
         profile = request.user.profile
         serializer = ProfileSerializer(profile,)
