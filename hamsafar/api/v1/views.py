@@ -44,7 +44,7 @@ class ProfileAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
         return Response({
-            "response": "success"
+            "response": 200
         })
 
 
@@ -72,7 +72,7 @@ class RequestAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
         return Response({
-            "type": type(serializer.data)
+            "response" : 200
         })
 
 class FindNearAPIView(APIView):

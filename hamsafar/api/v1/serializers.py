@@ -37,6 +37,7 @@ class CreateProfileSerializer(serializers.ModelSerializer):
 
 
 class RequestSerializer(serializers.ModelSerializer): 
+    user = UserSerializer()
     class Meta:
         model = RequestTravel
         fields = '__all__'
