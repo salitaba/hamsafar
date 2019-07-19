@@ -23,9 +23,11 @@ class RequestTravel(models.Model):
 
     start_lat = models.DecimalField(max_digits=15, decimal_places=13)
     start_long = models.DecimalField(max_digits=15, decimal_places=13)
+    start_road = models.CharField(max_length=100)
 
     end_lat = models.DecimalField(max_digits=15, decimal_places=13)
     end_long = models.DecimalField(max_digits=15, decimal_places=13)
+    end_road = models.CharField(max_length=100)
 
     status = models.CharField(max_length=10, choices=status_choises)
 
