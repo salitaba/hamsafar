@@ -20,7 +20,7 @@
 
 ## APIes in project
 
-    -> create user :  /api/v1/profile (POST)
+    -> create user :  /api/v1/profile/\?format\=json (POST)
 
         {
             "profile": {
@@ -40,7 +40,7 @@
             "response": 200
         }
 
-    -> get my user info : /api/v1/profile (GET)
+    -> get my user info : /api/v1/profile/\?format\=json (GET)
 
         response : 
 
@@ -56,7 +56,7 @@
             }
         }
 
-    -> create request : /api/v1/request (POST)
+    -> create request : /api/v1/request/\?format\=json (POST)
 
         {
             "request": 
@@ -73,7 +73,7 @@
             "response": 200
         }
 
-    -> get my requests : /api/v1/request (GET)
+    -> get my requests : /api/v1/request/\?format\=json (GET)
 
         response :
 
@@ -100,7 +100,7 @@
             ]
         }
 
-    -> get my nearby persons: /api/v1/find-near (GET)
+    -> get my nearby persons: /api/v1/find-near/\?format\=json (GET)
 
         response: 
 
@@ -126,7 +126,7 @@
                 }
         }
     
-    -> accept nearby persons: /api/v1/find-near (POST)  [ this request change status person requests to accepted ]
+    -> accept nearby persons: /api/v1/find-near/\?format\=json (POST)  [ this request change status person requests to accepted ]
 
         response:
 
@@ -150,6 +150,7 @@
                 "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFsaSIsImV4cCI6MTU2NjEwMTc3NCwiZW1haWwiOiIiLCJvcmlnX2lhdCI6MTU2MzUwOTc3NH0.aVxoW8EooXcdwdF9gaJa2qJDbo6o2VJWYU43RNOrcZM"
             }
 
-        authencitation => in your headerfile you must set this :
+        how to user authencitation => in your headerfile you must set this :
+            Authorization: JWT <your token>
 
             
