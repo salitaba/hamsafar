@@ -14,7 +14,7 @@ class ProfileView(generics.ListCreateAPIView):
     serializer_class = CreateProfileSerializer()
 
     def list(self, request):
-        permission_classes = [IsAuthenticated,]
+        permission_classes = [IsAuthenticated, ]
         queryset = request.user.profile()
         serializer_class = ProfileSerializer(queryset,)
         return Response(serializer_class)
@@ -63,8 +63,9 @@ class RequestAPIView(APIView):
             'requests': serializer.data
         }
         return Response(response)
+
     def post(self, request):
-        permission_classes = [IsAuthenticated,]
+        permission_classes = [IsAuthenticated, ]
         user_id = request.user.id
         requset_travel = request.data.get('request')
         serializer = CreateRequestSerializer(
@@ -74,12 +75,13 @@ class RequestAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
         return Response({
-            "response" : 200
+            "response": 200
         })
+
 
 class FindNearAPIView(APIView):
     def get(self, request):
-        permission_classes= [IsAuthenticated, ]
+        permission_classes = [IsAuthenticated, ]
         request_list = RequestTravel.objects.filter(status="pending")
         serializer = RequestSerializer(request_list, many=True)
         response = {
@@ -92,30 +94,31 @@ class FindNearAPIView(APIView):
         requests = RequestTravel.objects.all()
         cnt = 0
 
-        for request_travel in requests :
+        for request_travel in requests:
             request_travel.status = 'accepted'
             request_travel.user.profile.cash -= 10
             request_travel.user.profile.save()
             request_travel.save()
             cnt = cnt + 1
 
-
         request.user.profile.cash += 10 * cnt
         request.user.profile.save()
         return Response({
             "response": 200
         })
-        
+
+
 class LastRequestAPIView(APIView):
     permission_classes = [IsAuthenticated, ]
+
     def get(self, request):
         request_travel = request.user.requesttravel_set
-        last_request_travel = request_travel.all().order_by('-id')[0]
+        try:
+            last_request_travel = request_travel.all().order_by('-id')[0]
+        except IndexError:
+            return Response({})
         serializer = RequestSerializer(last_request_travel)
         response = {
-            "request" : serializer.data
+            "request": serializer.data
         }
         return Response(response)
-
-
-    
