@@ -21,8 +21,12 @@ class RequestTravel(models.Model):
         ('accepted', 'accepted'),
     ]
 
-    lat = models.DecimalField(max_digits=15, decimal_places=13)
-    long = models.DecimalField(max_digits=15, decimal_places=13)
+    start_lat = models.DecimalField(max_digits=15, decimal_places=13)
+    start_long = models.DecimalField(max_digits=15, decimal_places=13)
+
+    end_lat = models.DecimalField(max_digits=15, decimal_places=13)
+    end_long = models.DecimalField(max_digits=15, decimal_places=13)
+
     status = models.CharField(max_length=10, choices=status_choises)
 
     user = models.ForeignKey(

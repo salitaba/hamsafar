@@ -20,7 +20,8 @@
 
 ## APIes in project
 
-    -> create user :  /api/v1/profile/\?format\=json (POST)
+###create user 
+    url : /api/v1/profile/\?format\=json (POST)
 
         {
             "profile": {
@@ -40,7 +41,8 @@
             "response": 200
         }
 
-    -> get my user info : /api/v1/profile/\?format\=json (GET)
+### get my user info
+    url : /api/v1/profile/\?format\=json (GET)
 
         response : 
 
@@ -56,7 +58,8 @@
             }
         }
 
-    -> create request : /api/v1/request/\?format\=json (POST)
+### create request
+    url : /api/v1/request/\?format\=json (POST)
 
         {
             "request": 
@@ -73,7 +76,8 @@
             "response": 200
         }
 
-    -> get my requests : /api/v1/request/\?format\=json (GET)
+###get my requests 
+    url : /api/v1/request/\?format\=json (GET)
 
         response :
 
@@ -99,8 +103,27 @@
                 }
             ]
         }
+###get last request
+    url : /api/v1/request/last/\?format\=json (GET)
+        response:
 
-    -> get my nearby persons: /api/v1/find-near/\?format\=json (GET)
+            {
+                "request": {
+                    "id": 1,
+                    "user": {
+                        "username": "ali"
+                    },
+                    "start_lat": "23.2321320000000",
+                    "start_long": "32.2132000000000",
+                    "end_lat": "2.0000000000000",
+                    "end_long": "2.0000000000000",
+                    "status": "accepted"
+                }
+            }
+
+
+###get my nearby persons
+    url : /api/v1/find-near/\?format\=json (GET)
 
         response: 
 
@@ -126,7 +149,8 @@
                 }
         }
     
-    -> accept nearby persons: /api/v1/find-near/\?format\=json (POST)  [ this request change status person requests to accepted ]
+###accept nearby persons
+    url : /api/v1/find-near/\?format\=json (POST)  [ this request change status person requests to accepted ]
 
         response:
 
@@ -135,7 +159,7 @@
         }
 
 
-    -> how to use token
+###how to use token
     
         recieve token => /api/token (POST)
 
@@ -150,7 +174,7 @@
                 "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFsaSIsImV4cCI6MTU2NjEwMTc3NCwiZW1haWwiOiIiLCJvcmlnX2lhdCI6MTU2MzUwOTc3NH0.aVxoW8EooXcdwdF9gaJa2qJDbo6o2VJWYU43RNOrcZM"
             }
 
-        how to user authencitation => in your headerfile you must set this :
+        how to use authencitation => in your headerfile you must set this :
             Authorization: JWT <your token>
 
             

@@ -80,7 +80,7 @@ class RequestAPIView(APIView):
 class FindNearAPIView(APIView):
     def get(self, request):
         permission_classes= [IsAuthenticated, ]
-        request_list = RequestTravel.objects.all()
+        request_list = RequestTravel.objects.filter(status="pending")
         serializer = RequestSerializer(request_list, many=True)
         response = {
             "requests": serializer.data
@@ -106,3 +106,16 @@ class FindNearAPIView(APIView):
             "response": 200
         })
         
+class LastRequestAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+    def get(self, request):
+        request_travel = request.user.requesttravel_set
+        last_request_travel = request_travel.all().order_by('-id')[0]
+        serializer = RequestSerializer(last_request_travel)
+        response = {
+            "request" : serializer.data
+        }
+        return Response(response)
+
+
+    
